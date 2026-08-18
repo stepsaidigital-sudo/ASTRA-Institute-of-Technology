@@ -80,9 +80,6 @@
 
       <!-- Desktop Actions -->
       <div class="hidden lg:flex items-center gap-4">
-        <button onclick="toggleAI(true)" class="flex items-center gap-2 text-sm font-medium text-[#2563EB] hover:text-[#1e4db7] transition-colors bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">
-          <i data-lucide="sparkles" class="w-4 h-4"></i> Ask Astra AI
-        </button>
         <button id="apply-btn" onclick="navigate('home'); document.getElementById('admissions-section').scrollIntoView({behavior: 'smooth'})" class="bg-white text-[#0B1220] px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-200 transition-all transform hover:scale-105 border border-slate-200 shadow-sm">
           Apply Now
         </button>
@@ -101,11 +98,6 @@
       <button class="text-left" onclick="navigate('programs')">Academics</button>
       <button class="text-left" onclick="navigate('campus')">Campus Life</button>
       <button class="text-left" onclick="navigate('placements')">Placements</button>
-    </div>
-    <div class="mt-auto pb-12 flex flex-col gap-4">
-      <button onclick="toggleAI(true); toggleMobileMenu();" class="w-full py-4 bg-[#2563EB] text-white rounded-xl font-medium flex justify-center items-center gap-2">
-        <i data-lucide="sparkles" class="w-5 h-5"></i> Ask Astra AI
-      </button>
     </div>
   </div>
 
@@ -144,18 +136,6 @@
               <button onclick="navigate('programs')" class="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-colors backdrop-blur-sm">
                 Explore Programs
               </button>
-            </div>
-
-            <!-- Hero AI Prompt -->
-            <div onclick="toggleAI(true)" class="glass-panel-dark max-w-md p-4 rounded-2xl cursor-pointer hover:bg-white/10 transition-colors flex items-center gap-4 group">
-              <div class="w-10 h-10 rounded-full bg-[#2563EB]/20 flex items-center justify-center shrink-0">
-                <i data-lucide="sparkles" class="w-5 h-5 text-[#2563EB]"></i>
-              </div>
-              <div class="flex-1">
-                <p class="text-xs text-slate-400 font-medium mb-1">Astra AI Assistant</p>
-                <p class="text-sm text-white group-hover:text-slate-200 transition-colors">What do you want to build?</p>
-              </div>
-              <div class="text-xs px-3 py-1 bg-white/10 rounded-full text-slate-300">Ask</div>
             </div>
           </div>
         </div>
@@ -594,62 +574,7 @@
     </div>
   </footer>
 
-  <!-- Global AI Floating Button -->
-  <button id="ai-floating-btn" onclick="toggleAI(true)" class="fixed bottom-6 right-6 w-14 h-14 bg-[#0B1220] hover:bg-slate-800 text-white rounded-full shadow-2xl shadow-slate-900/20 flex items-center justify-center z-40 transition-transform hover:scale-110 group">
-    <i data-lucide="sparkles" class="w-6 h-6 group-hover:text-[#F97316] transition-colors"></i>
-    <span class="absolute -top-2 -right-2 flex h-4 w-4">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F97316] opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-4 w-4 bg-[#F97316] border-2 border-[#0B1220]"></span>
-    </span>
-  </button>
-
-  <!-- AI Chat Drawer -->
-  <div id="ai-overlay" onclick="toggleAI(false)" class="hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"></div>
-  <div id="ai-chat-drawer" class="fixed inset-y-0 right-0 w-full md:w-[400px] bg-white shadow-2xl z-50 flex flex-col transform translate-x-full transition-transform duration-300 border-l border-slate-200">
-    <div class="bg-[#0B1220] text-white p-4 flex justify-between items-center md:rounded-tl-none">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#2563EB] to-[#F97316] flex items-center justify-center p-[2px]">
-          <div class="bg-[#0B1220] w-full h-full rounded-full flex items-center justify-center">
-            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
-          </div>
-        </div>
-        <div>
-          <h3 class="font-medium text-sm">ASTRA AI</h3>
-          <div class="flex items-center gap-1.5 text-xs text-slate-400">
-            <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> AI Demo Online
-          </div>
-        </div>
-      </div>
-      <button onclick="toggleAI(false)" class="p-2 hover:bg-slate-800 rounded-full text-slate-300 hover:text-white transition-colors">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-    </div>
-
-    <!-- Quick Actions -->
-    <div class="bg-slate-50 border-b border-slate-200 p-3 flex gap-2 overflow-x-auto no-scrollbar">
-      <button onclick="sendAI('Find Program')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 hover:border-[#2563EB] hover:text-[#2563EB]">Find Program</button>
-      <button onclick="sendAI('Compare CSE & AI')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 hover:border-[#2563EB] hover:text-[#2563EB]">Compare CSE & AI</button>
-      <button onclick="sendAI('Admissions')" class="whitespace-nowrap px-3 py-1.5 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 hover:border-[#2563EB] hover:text-[#2563EB]">Admissions</button>
-    </div>
-
-    <!-- Messages -->
-    <div id="ai-messages" class="flex-1 p-4 overflow-y-auto bg-slate-50/50 flex flex-col gap-4">
-      <!-- Injected via JS -->
-    </div>
-
-    <!-- Input Area -->
-    <div class="p-4 bg-white border-t border-slate-200">
-      <div class="relative flex items-center">
-        <input type="text" id="ai-input" onkeypress="if(event.key === 'Enter') sendAI()" placeholder="Ask anything about Astra..." class="w-full bg-slate-100 border-transparent rounded-full py-3 pl-4 pr-12 text-sm focus:bg-white focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 outline-none transition-all" />
-        <button onclick="sendAI()" class="absolute right-2 p-2 bg-[#2563EB] text-white rounded-full hover:bg-[#1e4db7] transition-colors">
-          <i data-lucide="send" class="w-4 h-4"></i>
-        </button>
-      </div>
-      <div class="text-center mt-2">
-         <span class="text-[10px] text-slate-400">AI-powered responses. Verify critical information.</span>
-      </div>
-    </div>
-  </div>
+  <!-- Third-party agent widget mounts here -->
 
 
   <script>
@@ -680,8 +605,6 @@
       { id: 'q3', question: 'How comfortable are you with mathematics?', options: ['Beginner', 'Comfortable', 'Strong', 'Very strong'] },
       { id: 'q4', question: 'Which career sounds most interesting?', options: ['Software Engineer', 'AI Engineer', 'Robotics Engineer', 'Product Engineer', 'Core Engineer'] }
     ];
-
-    let aiMessages = [{ role: 'ai', text: 'Hello! I am Astra AI. How can I help you explore the campus or find your perfect engineering program today?' }];
 
     // --- UTILS & ROUTING ---
     window.currentActiveView = 'home';
@@ -837,73 +760,6 @@
       `);
     };
 
-
-    // --- AI CHAT LOGIC ---
-    window.toggleAI = function(open) {
-      const drawer = document.getElementById('ai-chat-drawer');
-      const overlay = document.getElementById('ai-overlay');
-      const btn = document.getElementById('ai-floating-btn');
-      if (open) {
-        drawer.classList.remove('translate-x-full');
-        overlay.classList.remove('hidden');
-        btn.classList.add('hidden');
-        renderChat();
-      } else {
-        drawer.classList.add('translate-x-full');
-        overlay.classList.add('hidden');
-        btn.classList.remove('hidden');
-      }
-    };
-
-    function renderChat() {
-      const html = aiMessages.map(msg => `
-        <div class="flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}">
-          <div class="max-w-[85%] rounded-2xl px-4 py-3 text-sm ${msg.role === 'user' ? 'bg-[#0B1220] text-white rounded-br-sm' : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm shadow-sm'}">
-            ${msg.text}
-            ${msg.role === 'ai' && msg.text.includes('Compare') ? `<button onclick="toggleAI(false); navigate('compare')" class="mt-3 block w-full py-2 bg-slate-100 text-slate-800 rounded-lg text-xs font-medium hover:bg-slate-200 transition-colors">Open Comparison Tool</button>` : ''}
-          </div>
-        </div>
-      `).join('');
-      updateDOM('ai-messages', html);
-      const container = document.getElementById('ai-messages');
-      container.scrollTop = container.scrollHeight;
-    }
-
-    window.sendAI = function(forcedText = null) {
-      const inputEl = document.getElementById('ai-input');
-      const text = forcedText || inputEl.value.trim();
-      if (!text) return;
-      
-      aiMessages.push({ role: 'user', text });
-      inputEl.value = '';
-      renderChat();
-
-      // Show typing indicator
-      const typingHtml = `
-        <div id="ai-typing" class="flex justify-start">
-          <div class="bg-white border border-slate-200 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-1.5">
-            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></div>
-            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
-            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
-          </div>
-        </div>
-      `;
-      document.getElementById('ai-messages').insertAdjacentHTML('beforeend', typingHtml);
-      document.getElementById('ai-messages').scrollTop = document.getElementById('ai-messages').scrollHeight;
-
-      setTimeout(() => {
-        aiMessages.push({ role: 'ai', text: getAIResponseMock(text) });
-        renderChat();
-      }, 1000);
-    };
-
-    function getAIResponseMock(msg) {
-      const l = msg.toLowerCase();
-      if(l.includes('compare') || l.includes('difference')) return "Great question. CSE is broader, covering software architecture and networking. AI & Data Science is specialized in predictive models and neural networks. Shall I open the Comparison Tool?";
-      if(l.includes('admission') || l.includes('apply')) return "For 2026, you'll need 12th grade Math & Physics, plus Astra Entrance scores. Shall I guide you to the Admissions form?";
-      if(l.includes('placement') || l.includes('salary')) return "Astra sees 150+ recruiters including Microsoft and NVIDIA. Highest package prototype data is ₹41 LPA.";
-      return "That's an interesting question. As an AI guide for this prototype, I can help you with programs, campus life, and admissions. Try asking to 'Compare Programs'.";
-    }
 
     // --- QUIZ LOGIC ---
     let quizStep = 0;
